@@ -6,7 +6,168 @@ var strage = {
 	message: "デフォルトメッセージ",
 };
 
+let purchasingList = [
+	{
+		purchasingId: "A2333333",
+		purchasingDate: "2020/03/05",
+		purchasingTotalPrice: 23000,
+	},
+	{
+		purchasingId: "A2433333",
+		purchasingDate: "2020/03/05",
+		purchasingTotalPrice: 23000,
+	},
+	{
+		purchasingId: "A2533333",
+		purchasingDate: "2020/03/05",
+		purchasingTotalPrice: 4020000,
+	},
+	{
+		purchasingId: "A2633333",
+		purchasingDate: "2020/03/05",
+		purchasingTotalPrice: 23000,
+	},
+	{
+		purchasingId: "A2333334",
+		purchasingDate: "2020/03/05",
+		purchasingTotalPrice: 23000,
+	},
+];
+
+let purchasingDetail = [
+	{
+		purchasingId: "A124567",
+		purchasingTotal: 5,
+		totalPrice: 59921,
+		purchasingDate: "2020/04/22",
+		specifidation: [
+			{
+				specificationId: "A2333333",
+				productName: "カーボンペンC2-W",
+				unitPrice: 800,
+				total: 12,
+				purchasingDate: "2020/03/05",
+				totalPrice: 9600,
+			},
+			{
+				specificationId: "A2433333",
+				productName: "緩衝材ロール30mm",
+				unitPrice: 960,
+				total: 3,
+				purchasingDate: "2020/03/05",
+				totalPrice: 2800,
+			},
+			{
+				specificationId: "A2533333",
+				productName: "名刺用紙 平和堂 350-h",
+				unitPrice: 1520,
+				total: 5,
+				purchasingDate: "2020/03/05",
+				totalPrice: 4560,
+			},
+			{
+				specificationId: "A2633333",
+				productName: "ダンボール クラフトボール紙",
+				unitPrice: 1674,
+				total: 20,
+				purchasingDate: "2020/03/05",
+				totalPrice: 3480,
+			},
+			{
+				specificationId: "A2333334",
+				productName: "ギフトボックス32個セット",
+				unitPrice: 2370,
+				total: 4,
+				purchasingDate: "2020/03/05",
+				totalPrice: 9480,
+			},
+		],
+	},
+];
+
+const productList = [
+	{
+		productId: "A2333333",
+		productName: "カーボンペンC2-W",
+		productPrice: 23000,
+	},
+	{
+		productId: "A2433333",
+		productName: "緩衝材ロール30mm",
+		productPrice: 23000,
+	},
+	{
+		productId: "A2533333",
+		productName: "名刺用紙 平和堂 350-h",
+		productPrice: 4020000,
+	},
+	{
+		productId: "A2633333",
+		productName: "ダンボール クラフトボール紙",
+		productPrice: 23000,
+	},
+	{
+		productId: "A2333334",
+		productName: "ギフトボックス32個セット",
+		productPrice: 23000,
+	},
+];
+
+const productDetail = [
+	{
+		productId: "A124567",
+		productName: "カーボンペンC2-W",
+		productTotal: 9600,
+
+		// 仕入れ商品
+		purchasedProducts: [
+			{
+				purchasingId: "A2333333",
+				productName: "カーボンペンC2-W",
+				unitPrice: 800,
+				purchasingQuantity: 12,
+				purchasingDate: "2020/03/05",
+				totalPrice: 9600,
+			},
+			{
+				purchasingId: "A2433333",
+				productName: "緩衝材ロール30mm",
+				unitPrice: 960,
+				purchasingQuantity: 3,
+				purchasingDate: "2020/03/05",
+				totalPrice: 2800,
+			},
+			{
+				purchasingId: "A2533333",
+				productName: "名刺用紙 平和堂 350-h",
+				unitPrice: 1520,
+				purchasingQuantity: 5,
+				purchasingDate: "2020/03/05",
+				totalPrice: 4560,
+			},
+			{
+				purchasingId: "A2633333",
+				productName: "ダンボール クラフトボール紙",
+				unitPrice: 1674,
+				purchasingQuantity: 20,
+				purchasingDate: "2020/03/05",
+				totalPrice: 3480,
+			},
+			{
+				purchasingId: "A2333334",
+				productName: "ギフトボックス32個セット",
+				unitPrice: 2370,
+				purchasingQuantity: 4,
+				purchasingDate: "2020/03/05",
+				totalPrice: 9480,
+			},
+		],
+	},
+];
+
 const strages = [strage];
+const purchasingLists = purchasingList;
+const purchasingDetails = purchasingDetail;
 
 /**
  * HTTP の GET メソッドを待ち受けてステータスコードと文字列、メッセージリストを返す
@@ -18,13 +179,53 @@ const strages = [strage];
  * }
  * といった JSON が返却される
  */
-
 router.get("/get", function (req, res, next) {
 	res.status(200);
+
 	res.json({
 		status: 200,
-		response: "メッセージリストを返却",
+		response: "仕入れリストを返却",
 		messages: strages,
+	});
+});
+
+router.get("/purchasing-list", function (req, res, next) {
+	res.status(200);
+
+	res.json({
+		status: 200,
+		response: "仕入れリストを返却",
+		messages: purchasingLists,
+	});
+});
+
+router.get("/purchasing-detail", function (req, res, next) {
+	res.status(200);
+
+	res.json({
+		status: 200,
+		response: "仕入れ詳細を返却",
+		messages: purchasingDetails,
+	});
+});
+
+router.get("/product-list", function (req, res, next) {
+	res.status(200);
+
+	res.json({
+		status: 200,
+		response: "仕入れリストを返却",
+		messages: productList,
+	});
+});
+
+router.get("/product-detail", function (req, res, next) {
+	res.status(200);
+
+	res.json({
+		status: 200,
+		response: "仕入れ詳細を返却",
+		messages: productDetail,
 	});
 });
 
